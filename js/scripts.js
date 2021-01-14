@@ -73,11 +73,12 @@ window.onscroll = () => console.log('Scroleandooooo...');
 const btnEnviar = document.querySelector('.boton--primario');
 
 //addEventListener registra un evento
+/*
 btnEnviar.addEventListener('click', evento => {
     console.log(evento); //datos del evento
     evento.preventDefault();  //previene la accion por default del evento (en este caso enviar los datos del submit)
     console.log('Enviando formulario');
-})
+}) */
 
 //Eventos de los inputs y textarea
 
@@ -118,3 +119,71 @@ function leerFormularios(evento) {
 nombre.addEventListener('input', leerFormularios);
 email.addEventListener('input', leerFormularios);
 mensaje.addEventListener('input', leerFormularios);
+
+
+//Evento submit
+//El evento submit se usa cuando se trata de un formulario
+const formulario = document.querySelector('.formulario');
+
+formulario.addEventListener('submit', evento => {
+    evento.preventDefault();
+
+    //Validar el formulario
+    const {nombre, email, mensaje} = datos;
+
+    if(nombre === '' || email === '' || mensaje === '') {
+        mostrarAlerta('Completa todos los campos', true);
+        return;
+    }
+
+    //Enviar el formulario
+    mostrarAlerta('Envio Exitoso');
+})
+
+
+// Funcion del mensaje de error en pantalla
+/*
+function mostrarError(mensaje) {
+    const error = document.createElement('P');
+    error.textContent = mensaje;
+    error.classList.add('error');
+    formulario.appendChild(error);
+
+    //que desaparezca en 5s
+    setTimeout(() => {
+        error.remove();
+    }, 7000);
+}
+
+//funcion de alerta de envio exitoso
+
+
+function envioExitoso(mensaje) {
+    const sucess = document.createElement('P');
+    sucess.textContent = mensaje;
+    sucess.classList.add('sucess');
+    formulario.appendChild(sucess);
+
+    setTimeout(() => {
+        sucess.remove();
+    }, 7000);
+}
+*/
+
+//Refactoring, acortando el codigo
+
+function mostrarAlerta(mensaje, error =null) {
+    const mostrarAlerta = document.createElement('P');
+    mostrarAlerta.textContent = mensaje;
+    if(error) {
+        mostrarAlerta.classList.add('error');
+    } else {
+        mostrarAlerta.classList.add('sucess')
+}
+
+    formulario.appendChild(mostrarAlerta);
+     setTimeout(() => {
+         mostrarAlerta.remove();
+     }, 7000);
+
+}

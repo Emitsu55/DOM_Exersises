@@ -229,13 +229,13 @@ img {
 /** Contacto **/
 
 .error {
-    background-color: rgb(185, 0, 0);
+    background-color: rgba(185, 0, 0, 0.486);
     text-align: center;
     padding: 1rem;
     color: var(--blanco);
     text-transform: uppercase;
 }
-.correcto {
+.sucess {
     background-color: rgb(74, 185, 0);
     text-align: center;
     padding: 1rem;
